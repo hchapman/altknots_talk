@@ -9,6 +9,7 @@
 		    <link rel="stylesheet" href="css/reveal.css">
 		    <link rel="stylesheet" href="css/theme/mywhite.css">
         <link rel="stylesheet" href="css/mathcros.css">
+        <link rel="stylesheet" href="css/altknot_styles.css">
 
 		    <!-- Theme used for syntax highlighting of code -->
 		    <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -25,16 +26,34 @@
 	  <body>
         <span style="display:none" id="texheader">
             \(
-            \require{mathtools}
             \definecolor{tangle}{RGB}{228, 26, 28}
             \definecolor{altlink}{RGB}{55,126,184}
             \definecolor{linkgrowth}{RGB}{77,175,74}
             \definecolor{altknot}{RGB}{152,78,163}
+            %%
+            \definecolor{tanglegen}{RGB}{217,95,2}
+            \definecolor{algtangle}{RGB}{27,158,119}
+            \definecolor{bpotangle}{RGB}{117,112,179}
+            \definecolor{hortangle}{RGB}{166,118,29}
+            %%
+            \definecolor{occurconst}{RGB}{255,127,0}
+            %%
             \newcommand{\tanglecount}{{\color{tangle} a_n}}
             \newcommand{\tanglecountdec}{{\color{tangle} a_{n-1}}}
             \newcommand{\altlinkcount}{{\color{altlink} A_n}}
             \newcommand{\altknotcount}{{\color{altknot} {}^1\hspace{-0.3em}A_n }}
             \newcommand{\altlinkgrowth}{{\color{linkgrowth} \lambda}}
+            \newcommand{\tanglegenfun}[1]{{\color{tangle} w(}#1{\color{tangle})}}
+            \newcommand{\algtanglegenfun}[2]{{\color{algtangle} \alpha(}#1{\color{algtangle},}#2{\color{algtangle})}}
+            \newcommand{\bpotanglegenfun}[1]{{\color{bpotangle} q(}#1{\color{bpotangle})}}
+            \newcommand{\hortanglegenfun}[2]{{\color{hortangle} \gamma(}#1{\color{hortangle},}#2{\color{hortangle})}}
+            \newcommand{\hortanglegamma}{{\color{hortangle} \gamma}}
+            \newcommand{\superaltlinkclass}{\mathcal D}
+            \newcommand{\superaltknotclass}{{{}^1\hspace{-0.1em}\mathcal D}}
+            \newcommand{\altlinkclass}{{\color{altlink} \mathcal A}}
+            \newcommand{\altknotclass}{{\color{altknot} {}^1\hspace{-0.1em}\mathcal A}}
+            \newcommand{\occurconst}{{\color{occurconst} c}}
+            \newcommand{\NN}{\mathbb N}
             \)
         </span>
 		    <div class="reveal">
@@ -51,7 +70,7 @@
                     </div>
                     <p><a href="https://hchapman.github.io/talks/altknots/">hchapman.github.io/talks/altknots</a></p>
                     <p style="font-size:80%;">
-                        OIST Geometry and Topology Group<br>
+                        OIST Geometry and Topology of Manifolds Group<br>
                         February 18<sup>th</sup> 2019
 
                     </p>
@@ -62,21 +81,47 @@
                 </section>
 
                 <section>
-                    <h2>Alternating links are rare</h2>
+                    <h2>Alternating links</h2>
 
-                    <x-block>
+                    <x-definition>
+                        <h2></h2>
                         A knot or link type is <strong>alternating</strong> if it admits a diagram whose crossings alternate between over- and underpasses.
-                    </x-block>
+                    </x-definition>
+
+                    <img class="plain"
+                         style="margin-right:4em; height:6em; vertical-align:middle;"
+                         data-src="static_figs/10prime_None.svg">
+
+                    <img class="plain"
+                         style="height:6em; vertical-align:middle;"
+                         data-src="static_figs/10prime_None_alt.svg">
+
+
+                </section>
+
+                <section>
+                    <h2>Alternating links are rare</h2>
 
                     <x-theorem>
                         <h2>Thistlethwaite '98</h2>
-                        Link types which are <strong>alternating</strong> are exponentially rare among all link types.
+                        <span class="altlink">Alternating link types</span> are exponentially rare among links.
                     </x-theorem>
+
+                    <div class="fragment fade-in">
+                    <p>Let \(\altlinkclass\) be the set of all <span class="altlink">alternating link types</span>,<br> with counts \(\altlinkcount\) indexed by crossing number</p>
+
+                    <p>If \(L_n\) is the number of all link types, the theorem says;
+                        \[ \lim_{n\to\infty}{L_n^{1/n}} > \lim_{n\to\infty}{\altlinkcount^{1/n}}\]</p></div>
+
+                    <x-block class="fragment fade-in">
+                        <h2>Question (Classical)</h2>
+                        Does the same result hold for <span class="altknot">alternating knot types</span>?
+                    </x-block>
                 </section>
 
                 <section>
                     <h2>Alternating knots <em>should</em> be rare</h2>
-                    <p>Data of <strong>Hoste, Thistlethwaite, and Weeks '98</strong> suggests alternating knot types are rare</p>
+                    <p>Data of <strong>Hoste, Thistlethwaite, and Weeks '98</strong> suggests<br><span class="altknot">alternating knot types</span> are rare</p>
                     <table>
                         <thead>
                             <tr>
@@ -102,82 +147,166 @@
 
                     <x-theorem>
                         <h2>Thistlethwaite '98</h2>
-                        Link types which are <strong>alternating</strong> are exponentially rare among all link types.
+                        <span class="altlink">Alternating link types</span> are exponentially rare among all link types.
                     </x-theorem>
+
+                    <x-block class="fragment fade-in">
+                        <h2>Weak &amp; Insufficient Reasoning</h2>
+                        Every \(n\)-crossing link diagram has \(2^n\) crossing
+                        assignments, of which precisely <strong>two</strong> are
+                        alternating.
+                    </x-block>
+
+                    <p class="fragment fade-in">Must pay very close attention to <strong>equivalence classes</strong> of diagrams</p>
+                </section>
+
+                <section>
+                    <h2>Tangles</h2>
+
+                    <p>Tangles are "rooted" links, and can be closed to links by adding an additional crossing.</p>
+
+                    <p>Rooted objects have fewer symmetries and are often easier to enumerate.</p>
+
+                    <img>
                 </section>
 
                 <section>
                     <h2>Tait Flyping Conjecture</h2>
 
-                    <p>Relies on two facts about alternating link types: First, that the Tait Flyping Conjecture holds for alternating links;</p>
+                    <p><em>Ingredient 1</em>: The Tait Flyping Conjecture holds for alternating links;</p>
 
                     <x-theorem>
                         <h2>Menasco and Thistlethwaite '91</h2>
-                        Any two alternating link or tangle diagrams are related by a sequence of flypes if and only if they represent the same link or tangle type.
+                        Any two alternating <strong><span class="altlink">link</span> or <span class="tangle">tangle</span> diagrams</strong> are related by a sequence of flypes if and only if they represent the same link or tangle type.
                     </x-theorem>
 
                     <p><img
                            class="plain"
                            data-src="static_figs/flype.png"
-                       style="margin: 0;">
-                    (Source: Zinn-Justin and Zuber '10)</p>
+                       style="margin: 0;"><br>
+                        <x-source>Zinn-Justin and Zuber '10</x-source>
+                    </p>
                 </section>
 
                 <section>
                     <h2>Tait Flyping Conjecture &amp; Knots</h2>
 
                     <p>Tait Flyping Conjecture <strong>still holds</strong> for alternating knots</p>
+
                     <x-theorem>
                         <h2>Menasco and Thistlethwaite '91</h2>
-                        Any two alternating knot diagrams are related by a sequence of flypes if and only if they represent the same knot type.
+                        Any two alternating <strong><span class="altknot">knot</span> diagrams</strong> are related by a sequence of flypes if and only if they represent the same knot type.
                     </x-theorem>
                 </section>
 
                 <section>
                     <h2>Enumeration of alternating links</h2>
 
-                    <p>Second, that alternating link and tangle types can be enumerated;</p>
+                    <p><em>Ingredient 2</em>: Alternating link and tangle types can be enumerated;</p>
 
                     <x-theorem>
                         <h2>Sundberg and Thistlethwaite '98</h2>
-                        The numbers \(\tanglecount\) of alternating tangle types have a well-understood generating function,
-                        \( w(z) = \sum {\tanglecount z^n}\), and:
-                        \[ \tanglecount \sim \frac{3 \,c_1}{4 \sqrt \pi} n^{-5/2} \altlinkgrowth^{n-3/2}, \]
+                        The numbers \(\tanglecount\) of <span class="tangle">alternating tangle types</span> have a well-understood generating function (g.f.),
+                        \[ \tanglegenfun{z} =
+                        \sum_{\color{tangle}\substack{\text{alternating}\\\text{link types } {{\color{black}L}}}}{z^{\mathop{cr}(L)}} =
+                        \sum_{n}^{\infty} {\tanglecount z^n}.\]
+                    </x-theorem>
+                </section>
+
+                <section>
+                    <h2>Enumeration of alternating links</h2>
+                    <x-theorem>
+                        <h2>Sundberg and Thistlethwaite '98</h2>
+
+                        The counts \(\tanglecount\) grow asymptotically as,
+                        <div style="margin: 0.25em 0">\[ \tanglecount \sim \frac{3 \,c_1}{4 \sqrt \pi} n^{-5/2} \altlinkgrowth^{n-3/2}, \]</div>
                         for known constants \(c_1\) and \(\altlinkgrowth\).
                     </x-theorem>
 
-                    <p><strong>Zinn-Justin and Zuber '02</strong> alternatively prove this using random matrix theory</p>
+                    <p class="fragment fade-in"><strong>Zinn-Justin and Zuber '02</strong> reprove this using<br>techniques from random matrix theory</p>
+                </section>
+
+                <section>
+                    <h2>The generating function \(\tanglegenfun{z}\)</h2>
+
+                    <x-block>
+                        The g.f. of <span class="tangle">alternating tangle types</span> \(\tanglegenfun{z}\)
+                        satisfies:
+                        \[ \tanglegenfun{z} = \algtanglegenfun{z}{\bpotanglegenfun{\tanglegenfun{z}}} \]
+                        where;
+                        <ul>
+                            <li>\(z\) marks crossings,</li>
+                            <li>\(\zeta\) marks <strong>slots</strong> for tangles (or templates)</li>
+                            <li class="fragment fade-in">\(\bpotanglegenfun{\zeta}\) is the g.f. of <strong class="bpotangle">basic polyhedral templates</strong></li>
+                            <li class="fragment fade-in">\(\algtanglegenfun{z}{\zeta}\) is the g.f. of <strong class="algtangle">flype-equivalence classes of algebraic templates</strong>, </li>
+                        </ul>
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Basic polyhedral templates</h2>
+
+                    <p>
+                        <img class="plain"
+                             style="margin: 0px;"
+                             data-src="static_figs/polyhedral_template.png">
+                        <x-source>Sundberg and Thistlethwaite '98</x-source>
+                        <span class="bpotangle">Basic polyhedral templates</span>, counted by \(\bpotanglegenfun{\zeta}\)
+                    </p>
+
+                    <x-block>
+                        Bijection with <strong>rooted \(c\)-nets</strong> studied by <strong>Tutte '63</strong>:
+                        \[\bpotanglegenfun{\zeta} = {\scriptsize \frac{1}{2(\zeta+2)^3}\left( (1-4\zeta)^{3/2} + (2\zeta^2 - 10\zeta - 1) \right) - \frac{2}{1+\zeta} - \zeta + 2}\]
+                        (formula due to Sundberg and Thistlethwaite)
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Algebraic templates</h2>
+
+                    <p>
+                        <img class="plain" data-src="static_figs/algebraic_template.png"><br>
+                        <x-source>Sundberg and Thistlethwaite '98</x-source>
+                        <span class="algtangle"><strong>Flype equivalence classes</strong> of algebraic templates</span>, counted by \(\algtanglegenfun{z}{\zeta}\)
+                    </p>
+
+                    <x-block>
+                        <h2>Key observation</h2>
+                        Flyping can only occur <em>within an algebraic template</em>
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Algebraic templates</h2>
+
+                    <p>
+                        <img class="plain"
+                             style="height:5em; width:20em;"
+                             data-src="static_figs/algtangle_decomp.png"><br>
+                        <x-source>Sundberg and Thistlethwaite '98</x-source>
+                    </p>
+
+                    <x-block>
+                        Admit recursive decomposition into <span class="hortangle">horizontal templates</span>:
+                        \[\algtanglegenfun{z}{\zeta} = \hortanglegenfun{z}{\zeta} + \hortanglegenfun{z}{\zeta} + z - \zeta,\]
+                        where \(\hortanglegamma\) satisfies
+                        \[\hortanglegamma = z\algtanglegenfun{z}{\zeta} + \frac{\hortanglegamma^2}{1-\hortanglegamma} + \zeta\]
+                    </x-block>
                 </section>
 
                 <section>
                     <h2>Counts of tangles and links</h2>
 
-                    <p>Counts of alternating tangle types \(\tanglecount\) and alternating link types \(\altlinkcount\) are related;</p>
+                    <p>Counts of <span class="tangle">alternating tangle types</span> \(\tanglecount\) and<br><span class="altlink">alternating link types</span> \(\altlinkcount\) are related;</p>
 
                     <x-block>
                         <h2>Counts</h2>
                         \[ \frac{\tanglecountdec}{8(2n-3)} \le \altlinkcount \le \frac{\tanglecountdec}2 \]
                     </x-block>
 
-                    <x-block>
+                    <x-block class="fragment fade-in">
                         <h2>Exponential growth rates</h2>
                         \[ \lim_{n\to\infty}{\altlinkcount^{1/n}} = \lim_{n\to\infty}{\tanglecount^{1/n}} = \altlinkgrowth \]
-                    </x-block>
-                </section>
-
-                <section>
-                    <h2>Proof of enumerations for links</h2>
-
-                    <p>Both proofs for links ultimately rely on:
-                        <ul>
-                            <li>The <strong>flyping conjecture</strong>, and</li>
-                            <li>The <strong>enumeration of "4-valent maps"</strong> of, e.g., <strong>Tutte '63</strong></li>
-                        </ul>
-                    </p>
-
-                    <x-block>
-                        <h2>Comparison to knots</h2>
-                        There are <strong>no explicit enumerations</strong> of underlying graphs of knot diagrams.
                     </x-block>
                 </section>
 
@@ -193,7 +322,169 @@
                         \[ \altknotcount \sim C \tau^n n^{\gamma-3} \]
                     </x-conjecture>
 
-                    <p>The generating function \( \sum{\altknotcount}z^n \) is <strong>not well understood</strong> and the radius of convergence <strong>is not known</strong></p>
+                    <x-block class="fragment fade-in">
+                        <h2>Currently</h2>
+                        The g.f. \( \sum{\altknotcount}z^n \) is <strong>not well understood</strong> and the radius of convergence <strong>is not known</strong>
+                    </x-block>
+                </section>
+
+
+                <section>
+                    <h2>Rarity of alternating links</h2>
+                    <img class="plain"
+                         style="height: 5em;"
+                         data-src="static_figs/altknot_rbartangle.svg">
+
+                    <x-theorem>
+                        <h2>Thistlethwaite '98</h2>
+                        The set of tangles \(\superaltlinkclass\) generated by introducing the above (non-alternating) tangle into the <span class="algtangle">set of algebraic templates</span> still <b>satisfies the flyping conjecture</b>
+                    </x-theorem>
+                </section>
+
+                <section>
+                    <h2>Rarity of alternating links</h2>
+                    <img class="plain"
+                         style="height: 5em;"
+                         data-src="static_figs/altknot_rbartangle.svg">
+
+                    <p>
+                        The g.f. of this superclass of tangle types is obtained by replacing
+                        \[ \algtanglegenfun{z}{\zeta} \quad \text{with}
+                        \quad \beta(z,\zeta) = \algtanglegenfun{z}{\zeta} + z^{13}. \]
+                        This g.f. has <b>strictly smaller radius of convergence</b>
+                        than that of <span class="tangle">alternating tangle types</span> \(\tanglegenfun{z}\), so:</p>
+                        <x-theorem>
+                            <h2>Thistlethwaite '98</h2>
+                            Alternating <span class="tangle">tangle</span> (and <span class="altlink">link</span>) types are exponentially rare.
+                        </x-theorem>
+                </section>
+
+                <section>
+                    <h2>What about alternating knots?</h2>
+                    <img class="plain"
+                         style="height: 17em"
+                         data-src="static_figs/300primealt_viridis_2.svg">
+                </section>
+
+                <section>
+                    <h2>Rarity of alternating knots</h2>
+                    <img class="plain"
+                         style="height: 5em;"
+                         data-src="static_figs/altknot_rbartangle.svg">
+
+                    <x-block>
+                        <h2>Observation</h2>
+                        The above tangle <strong>can be found in knots</strong>, and is <strong>contained
+                            in a superclass \(\superaltknotclass\)</strong> of knot diagrams which still
+                        satisfy the flyping conjecture
+                    </x-block>
+
+                    <p>Cannot quantify the ocurrences with g.f's<br>(not enough understanding of knots)</p>
+                </section>
+
+                <section>
+                    <h2>Summary so far for knots</h2>
+
+                    <x-block>
+                        <h2>We have...</h2>
+                        Alternating knots satisfy the flyping conjecture, as do a superclass \(\superaltknotclass\).
+                    </x-block>
+
+                    <x-block>
+                        <h2>We lack...</h2>
+                        Enumeration of alternating knots, or knots in \(\superaltknotclass\).
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Pattern theorem</h2>
+
+                    <p>Pattern theorems quantify the density of <strong>structure</strong>:</p>
+
+                    <x-theorem>
+                        <h2>C. '18</h2>
+                        Let \(P\) be a reduced alternating tangle admitting no
+                        interior flypes that may be found in alternating knot
+                        diagrams.<br><br>
+
+                        There exist constants \(\occurconst >
+                        0\), and \(N \in \NN\) such that for all
+                        \(n \ge N\), <strong>all but exponentially few
+                            alternating knot types</strong> contain \(\ge \occurconst n\)
+                        copies of \(P\).
+                    </x-theorem>
+                </section>
+
+                <section>
+                    <h2>Pattern theorem implies rarity</h2>
+
+                    <p>\(R = \)
+                    <img class="plain"
+                         style="height: 5em; margin-right:4em;
+                                vertical-align: middle"
+                                 data-src="static_figs/altknot_rtangle.svg">
+                    \(\overline R =\)
+                    <img class="plain"
+                         style="height: 5em;
+                                vertical-align: middle;"
+                         data-src="static_figs/altknot_rbartangle.svg">
+                    </p>
+                    <x-block>
+                        <ol class="comfy">
+                            <li>There is \(\occurconst\) so that the tangle \(R\) occurs
+                                \(\occurconst n\) times in almost all alternating knot types.</li>
+
+                            <li class="fragment fade-in">In \(\superaltknotclass\), the tangles \(R\) and \(\overline R\) are equiprobable.</li>
+
+                            <li class="fragment fade-in">Knot types which contain \(\overline R\) are non-alternating.</li>
+
+                            <li class="fragment fade-in">To each alternating knot type, there are at least \(2^{\occurconst n}-1\) more non-alternating knot types in \(\superaltknotclass\).</li>
+                        </ul>
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Alternating knots are rare</h2>
+
+                    <p>We conclude:</p>
+
+                    <x-theorem>
+                        <h2>C. '18</h2>
+                        <span class="altknot">Alternating knot types</span> are exponentially rare among all knot types.
+                    </x-theorem>
+                </section>
+
+                <section>
+                    <h2>Requirements for a pattern theorem</h2>
+
+                    <p>Pattern theorem requires a way of adding<br>a pattern to knot types that:</p>
+                    <ol class="comfy">
+                        <li class="fragment fade-in">Only produces new, valid objects,</li>
+                        <li class="fragment fade-in">Has a linear number (\(\propto n\)) of attachment sites, and</li>
+                        <li class="fragment fade-in">Can be un-done</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>The idea</h2>
+
+                    <img>
+
+                    <p>
+                        \[ \text{# lone crossings} + \sum_{\substack{\text{all horiz.}\\\text{tangles }\gamma}}{\text{# sites in }\gamma} = n \]
+                    </p>
+                </section>
+
+                <section>
+                    <h2>The construction</h2>
+                </section>
+
+                <section>
+                    <h2>Applications and other ideas</h2>
+
+                    <p>Millet and Jablan's conjecture</p>
+
+                    <p>Random topology</p>
                 </section>
 			      </div>
 		    </div>
@@ -207,7 +498,8 @@
 			   // - https://github.com/hakimel/reveal.js#dependencies
 			   Reveal.initialize({
              center: false,
-             transition: "fade",
+             transition: "none",
+             transitionSpeed: "fast",
              viewDistance: 3,
              history: true,
              reveald3: {

@@ -46,6 +46,25 @@ x-definition > h2 {
     }
 }
 
+x-source {
+    &:before {
+        content: "(Source: ";
+    }
+    &:after {
+        content: ")";
+    }
+
+    font-size: .8em;
+    display: block;
+    margin-bottom: .5em;
+}
+
 .reveal table td.number-cell {
     text-align: right;
+}
+
+ol.comfy, ul.comfy {
+    li:not(:last-child) {
+        margin-bottom:0.5em;
+    }
 }

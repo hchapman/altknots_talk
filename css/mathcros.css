@@ -29,7 +29,19 @@ x-definition > h2:before {
 x-definition > h2:after {
   content: ""; }
 
+x-source {
+  font-size: .8em;
+  display: block;
+  margin-bottom: .5em; }
+  x-source:before {
+    content: "(Source: "; }
+  x-source:after {
+    content: ")"; }
+
 .reveal table td.number-cell {
   text-align: right; }
+
+ol.comfy li:not(:last-child), ul.comfy li:not(:last-child) {
+  margin-bottom: 0.5em; }
 
 /*# sourceMappingURL=mathcros.css.map */
