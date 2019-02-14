@@ -51,7 +51,7 @@
             \newcommand{\superaltlinkclass}{\mathcal D}
             \newcommand{\superaltknotclass}{{{}^1\hspace{-0.1em}\mathcal D}}
             \newcommand{\altlinkclass}{{\color{altlink} \mathcal A}}
-            \newcommand{\altknotclass}{{\color{altknot} {}^1\hspace{-0.1em}\mathcal A}}
+            \newcommand{\altknotclass}{{\color{altknot} {}^1\hspace{-0.3em}\mathcal A}}
             \newcommand{\occurconst}{{\color{occurconst} c}}
             \newcommand{\NN}{\mathbb N}
             \)
@@ -163,11 +163,21 @@
                 <section>
                     <h2>Tangles</h2>
 
-                    <p>Tangles are "rooted" links, and can be closed to links by adding an additional crossing.</p>
+                    <x-block>
+                        <h2>Simplification from Combinatorics</h2>
+                        Objects with <strong>fewer symmetries</strong> are easier to enumerate
+                    </x-block>
 
-                    <p>Rooted objects have fewer symmetries and are often easier to enumerate.</p>
+                    <div><img class="plain"
+                         style="height:6em; margin-right:4em;"
+                         data-src="static_figs/opentangle.png">
 
-                    <img>
+                    <img class="plain"
+                         style="height:8em; margin-bottom:1em;"
+                         data-src="static_figs/close_opentangle.svg"></div>
+                    <x-source>Sundberg and Thistlethwaite '98</x-source>
+
+                    <p>Tangles can be closed to links by adding an additional crossing.</p>
                 </section>
 
                 <section>
@@ -374,7 +384,7 @@
 
                     <x-block>
                         <h2>Observation</h2>
-                        The above tangle <strong>can be found in knots</strong>, and is <strong>contained
+                        The above tangle <strong>can be found in knot types</strong>, and is <strong>contained
                             in a superclass \(\superaltknotclass\)</strong> of knot diagrams which still
                         satisfy the flyping conjecture
                     </x-block>
@@ -386,13 +396,13 @@
                     <h2>Summary so far for knots</h2>
 
                     <x-block>
-                        <h2>We have...</h2>
-                        Alternating knots satisfy the flyping conjecture, as do a superclass \(\superaltknotclass\).
+                        <h2>We have:</h2>
+                        <span class="altknot">Alternating knot types</span> of \(\altknotclass\) satisfy the flyping conjecture, as do a superclass \(\superaltknotclass\).
                     </x-block>
 
                     <x-block>
-                        <h2>We lack...</h2>
-                        Enumeration of alternating knots, or knots in \(\superaltknotclass\).
+                        <h2>We lack:</h2>
+                        Enumeration of <span class="altknot">alternating knot types</span>, or knots in \(\superaltknotclass\).
                     </x-block>
                 </section>
 
@@ -410,7 +420,7 @@
                         There exist constants \(\occurconst >
                         0\), and \(N \in \NN\) such that for all
                         \(n \ge N\), <strong>all but exponentially few
-                            alternating knot types</strong> contain \(\ge \occurconst n\)
+                            <span class="altknot">alternating knot types</span></strong> contain \(\ge \occurconst n\)
                         copies of \(P\).
                     </x-theorem>
                 </section>
@@ -432,13 +442,13 @@
                     <x-block>
                         <ol class="comfy">
                             <li>There is \(\occurconst\) so that the tangle \(R\) occurs
-                                \(\occurconst n\) times in almost all alternating knot types.</li>
+                                \(\occurconst n\) times in almost all <span class="altknot">alternating knot types</span>.</li>
 
                             <li class="fragment fade-in">In \(\superaltknotclass\), the tangles \(R\) and \(\overline R\) are equiprobable.</li>
 
                             <li class="fragment fade-in">Knot types which contain \(\overline R\) are non-alternating.</li>
 
-                            <li class="fragment fade-in">To each alternating knot type, there are at least \(2^{\occurconst n}-1\) more non-alternating knot types in \(\superaltknotclass\).</li>
+                            <li class="fragment fade-in">To each <span class="altknot">alternating knot type</span> in \(\altknotclass\), there are at least \(2^{\occurconst n}-1\) more non-alternating knot types in \(\superaltknotclass\).</li>
                         </ul>
                     </x-block>
                 </section>
@@ -457,7 +467,11 @@
                 <section>
                     <h2>Requirements for a pattern theorem</h2>
 
-                    <p>Pattern theorem requires a way of adding<br>a pattern to knot types that:</p>
+                    <img class="plain"
+                         style="height:6em;"
+                    data-src="static_figs/altknot_shieldconway.svg">
+
+                    <p>Pattern theorem requires a way of adding<br>a pattern to <span class="altknot">alternating knot types</span> that:</p>
                     <ol class="comfy">
                         <li class="fragment fade-in">Only produces new, valid objects,</li>
                         <li class="fragment fade-in">Has a linear number (\(\propto n\)) of attachment sites, and</li>
@@ -468,23 +482,74 @@
                 <section>
                     <h2>The idea</h2>
 
-                    <img>
+                    <img class="plain"
+                         style="height:10em;"
+                         data-src="static_figs/altknot_tangcycle.svg">
 
-                    <p>
+                    <x-block>
                         \[ \text{# lone crossings} + \sum_{\substack{\text{all horiz.}\\\text{tangles }\gamma}}{\text{# sites in }\gamma} = n \]
-                    </p>
+                    </x-block>
                 </section>
 
                 <section>
-                    <h2>The construction</h2>
+                    <h2>A conjecture on subknots</h2>
+
+                    <x-conjecture>
+                        <h2>Millett and Jablan '09</h2>
+
+                        The probability that a <strong>minimal prime knot diagram contains a trefoil knotted segment</strong> goes to one as the crossing number goes to infinity
+                    </x-conjecture>
+
+                    <x-corollary class="fragment fade-in">
+                        <h2>C. '18</h2>
+
+                        The probability that <strong>an <span class="altknot">alternating knot type</span> has a minimal prime diagram containing a trefoil knotted segment</strong> goes to one as the crossing number goes to infinity
+                    </x-corollary>
                 </section>
 
                 <section>
-                    <h2>Applications and other ideas</h2>
+                    <h2>Trefoil segments are common</h2>
 
-                    <p>Millet and Jablan's conjecture</p>
+                    <x-block>
+                        <h2>Proof</h2>
 
-                    <p>Random topology</p>
+                        The following pattern introduces a trefoil segment:
+
+                        <div style="width:100%; text-align: center"><img class="plain"
+                         data-src="static_figs/altknot_trefslip.svg"
+                              style="height:10em; align:center"></div>
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Take-aways &amp; conclusion</h2>
+
+                    <ol class="comfy" style="width:80%">
+                        <li>
+                            Alternating <strong class="altlink">links</strong> have the flype conjecture and a <strong>complete enumeration</strong>
+                        </li>
+                        <li class="fragment fade-in">
+                            Alternating <strong class="altknot">knots</strong> share the result on flypes but <strong>lack precise enumeration</strong>
+                        </li>
+                        <li class="fragment fade-in">
+                            Absent enumerations, <strong>pattern theorems</strong> can quantify presence of structure:
+                            <ul style="margin-top:0.1em">
+                                <li>Rarity of alternating knots</li>
+                                <li>Certainty of subknotting</li>
+                            </ul>
+                        </li>
+                        <li class="fragment fade-in">
+                            Pattern theorems can likely be proven for other classes in topology, geometry, etc...
+                        </li>
+                    </ol>
+                </section>
+
+                <section class="center"
+                         data-background-image="static_figs/300primealt_viridis_2.svg"
+                         data-background-opacity="0.2">
+                    <h1>Thank you!</h1>
+
+                    <p>C. 2018. <em>On the structure and scarcity of alternating knots.</em> Submitted. arXiv: <a href="https://arxiv.org/pdf/1804.09780.pdf">1804.09780</a></p>
                 </section>
 			      </div>
 		    </div>

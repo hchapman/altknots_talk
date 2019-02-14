@@ -46,6 +46,15 @@ x-definition > h2 {
     }
 }
 
+x-corollary >h2 {
+    &:before {
+        content: "Corollary (";
+    }
+    &:after {
+        content: ")";
+    }
+}
+
 x-source {
     &:before {
         content: "(Source: ";
@@ -64,7 +73,7 @@ x-source {
 }
 
 ol.comfy, ul.comfy {
-    li:not(:last-child) {
+    > li:not(:last-child) {
         margin-bottom:0.5em;
     }
 }
