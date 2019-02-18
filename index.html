@@ -71,7 +71,7 @@
                     <p><a href="https://hchapman.github.io/talks/altknots/">hchapman.github.io/talks/altknots</a></p>
                     <p style="font-size:80%;">
                         OIST Geometry and Topology of Manifolds Group<br>
-                        February 18<sup>th</sup> 2019
+                        18<sup>th</sup> February 2019
 
                     </p>
                 </section>
@@ -244,11 +244,14 @@
                         satisfies:
                         \[ \tanglegenfun{z} = \algtanglegenfun{z}{\bpotanglegenfun{\tanglegenfun{z}}} \]
                         where;
-                        <ul>
+                        <ul class="comfy">
                             <li>\(z\) marks crossings,</li>
-                            <li>\(\zeta\) marks <strong>slots</strong> for tangles (or templates)</li>
-                            <li class="fragment fade-in">\(\bpotanglegenfun{\zeta}\) is the g.f. of <strong class="bpotangle">basic polyhedral templates</strong></li>
-                            <li class="fragment fade-in">\(\algtanglegenfun{z}{\zeta}\) is the g.f. of <strong class="algtangle">flype-equivalence classes of algebraic templates</strong>, </li>
+                            <li class="fragment fade-in"
+                            data-fragment-index="1">\(\zeta\) marks <strong>slots</strong> for tangles (or templates)</li>
+                            <li class="fragment fade-in"
+                            data-fragment-index="1">\(\bpotanglegenfun{\zeta}\) is the g.f. of <strong class="bpotangle">basic polyhedral templates</strong></li>
+                            <li class="fragment fade-in"
+                            data-fragment-index="2">\(\algtanglegenfun{z}{\zeta}\) is the g.f. of <strong class="algtangle">flype-equivalence classes of algebraic templates</strong>, </li>
                         </ul>
                     </x-block>
                 </section>
@@ -473,9 +476,9 @@
 
                     <p>Pattern theorem requires a way of adding<br>a pattern to <span class="altknot">alternating knot types</span> that:</p>
                     <ol class="comfy">
-                        <li class="fragment fade-in">Only produces new, valid objects,</li>
+                        <li class="fragment fade-in">Only produces alternating knot types</li>
                         <li class="fragment fade-in">Has a linear number (\(\propto n\)) of attachment sites, and</li>
-                        <li class="fragment fade-in">Can be un-done</li>
+                        <li class="fragment fade-in">Can be un-done, yielding the original knot type</li>
                     </ol>
                 </section>
 
@@ -486,7 +489,7 @@
                          style="height:10em;"
                          data-src="static_figs/altknot_tangcycle.svg">
 
-                    <x-block>
+                    <x-block class="fragment fade-in">
                         \[ \text{# lone crossings} + \sum_{\substack{\text{all horiz.}\\\text{tangles }\gamma}}{\text{# sites in }\gamma} = n \]
                     </x-block>
                 </section>
@@ -518,6 +521,42 @@
                         <div style="width:100%; text-align: center"><img class="plain"
                          data-src="static_figs/altknot_trefslip.svg"
                               style="height:10em; align:center"></div>
+                    </x-block>
+                </section>
+
+                <section>
+                    <h2>Additivity of connected sum</h2>
+
+                    <x-conjecture>
+                        <h2>Classical</h2>
+                        The crossing number of knots is additive with respect to connected sum.
+                    </x-conjecture>
+
+                    <p>Of 1,388,705 prime knot types of 16 crossings, <br>
+                        1,388,694 are hyperbolic, leading to:</p>
+
+                    <x-conjecture>
+                        <h2>Adams '94</h2>
+                        Almost all prime knot types are hyperbolic.
+                    </x-conjecture>
+                </section>
+
+                <section>
+                    <h2>Competing conjectures</h2>
+
+                    <x-theorem>
+                        <h2>Malyutin '16</h2>
+
+                        Either of these conjectures contradicts the other.
+                    </x-theorem>
+
+                    <p>It's not unreasonable that Adams's conjecture is <strong>false</strong>
+                        and that current data is only representative of small crossing number</p>
+
+                    <x-block>
+                        <h2>Conjecture</h2>
+
+                        Can we disprove Adams's conjecture, possibly using pattern-theoretic methods?
                     </x-block>
                 </section>
 
